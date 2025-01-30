@@ -4,6 +4,7 @@ $(function() {
   $('#downloadButton').click(() => {
     console.log("Processing File")
     const fileToLoad = document.getElementById("uploadFile").files[0];
+    const fadalMode = document.getElementById("fadalMode").checked
 
     const fileReader = new FileReader();
     fileReader.onload = function(fileLoadedEvent){
@@ -11,7 +12,11 @@ $(function() {
         
       const lines = textFromFileLoaded.split("\n")
       const output = lines.map(line => {
-        return line.replace(/^\d+\s*/, '');
+        if (fadalMode) {
+          return line.replace(/^N?[0-9]+\.?[0-9]+?\s*/, '')
+        } else {
+          return line.replace(/^\d+\s*/, '');
+        }
       })
 
       const outFileData = output.join("\n")
