@@ -13,7 +13,7 @@ $(function() {
       const lines = textFromFileLoaded.split("\n")
       const output = lines.map(line => {
         if (fadalMode) {
-          return line.replace(/^N?[0-9]+\.?[0-9]+?\s*/, '')
+          return line.replace(/^N?[0-9.]+\s*/, '')
         } else {
           return line.replace(/^\d+\s*/, '');
         }
